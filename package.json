@@ -15,9 +15,7 @@
   "dependencies": {
     "electron": "^36.3.1",
     "express": "^5.1.0",
+    "nodemon": "^3.1.10",
     "socket.io": "^4.8.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
   }
 }
