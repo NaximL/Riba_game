@@ -1,7 +1,7 @@
 import { mapHeights, mapWidths, skins } from "./config/config.js";
 import { res, dpr, col, getId, isDesktop } from "./help.js";
 
-export const socket = io('http://192.168.1.153:3001');
+export const socket = io('https://eplorecorals-6971e5ec7c85.herokuapp.com');
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
