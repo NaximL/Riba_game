@@ -1,0 +1,700 @@
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    @import url("./fonts.css");
+    html, body {
+        margin: 0;
+        font-family: 'GNF', sans-serif;
+        transition: background-color 0.3s ease;
+        overflow: hidden !important;
+    }
+    
+    #ScrolSmall {
+        position: fixed;
+        left: 10px;
+        font-size: 16px;
+        color: black;
+        top: -10px;
+        font-family: 'GNF', sans-serif;
+    }
+    
+    #score {
+        position: fixed;
+        right: 40px;
+        top: 0px;
+        font-family: 'GNF', sans-serif;
+        font-size: 30px;
+        color: white;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    #score img {
+        width: 30px;
+    }
+    
+    #mahas {
+        position: fixed;
+        right: 0px;
+        width: 45px;
+        height: 50px;
+        border-radius: 10px 0px 0px 10px;
+        background-color: white;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.4rem;
+    }
+    
+    #back_cnv {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+    }
+    
+    .title_cont {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        font-size: 35px;
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+    
+    .title_cont.big {
+        transform: scale(1.3);
+    }
+    
+    .Score {
+        position: relative;
+        left: 10px;
+        top: 10px;
+        font-size: 25px;
+        color: white;
+    }
+    
+    #Hud {
+        gap: 10px;
+        position: fixed;
+        display: flex;
+        bottom: 20px;
+        left: 50%;
+        transform: translate(-50%, 150%);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, .15);
+        backdrop-filter: blur(5px);
+        padding: 0px 20px 10px 20px;
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #Hud.visible {
+        transform: translate(-50%, 0);
+    }
+    
+    .Hud_el {
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, .15);
+        backdrop-filter: blur(5px);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .Hud_el b {
+        position: absolute;
+        transform: translateY(-200%);
+        opacity: 0;
+        color: white;
+        font-weight: normal;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .Hud_el:hover b {
+        transform: translateY(-190%);
+        opacity: 1;
+    }
+    
+    .Hud_el img {
+        border-radius: 5px;
+        width: 100%;
+        height: 100%;
+    }
+    
+    #Hud section {
+        display: flex;
+        gap: 10px;
+    }
+    
+    #Hud_nick {
+        color: white;
+    }
+    
+    .back {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: none;
+        z-index: 1000;
+        background-color: rgba(128, 128, 128, 0.9);
+    }
+    
+    .back.visible {
+        display: block;
+    }
+    
+    .game_main_conttent {
+        display: none;
+    }
+    
+    .menu {
+        position: absolute;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    
+    .menu_butts {
+        transition: all 0.3s ease;
+    }
+    
+    .menu_butt {
+        padding-right: 50px;
+        text-align: center;
+        color: white;
+        font-size: 22px;
+        transition: all 0.3s ease;
+    }
+    
+    .menu_butt h1 {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: lighter !important;
+    }
+    
+    .menu_butt h1:hover {
+        color: rgb(224, 224, 224);
+        scale: 1.3;
+    }
+    
+    #logo_conteiner {
+        position: relative;
+        display: contents;
+    }
+    
+    .logo {
+        transform: scaleX(-1) rotate(15deg);
+        transition: all 1s ease;
+        position: relative;
+        width: 50%;
+    }
+    
+    .anim1s {
+        animation: anim4_riba 0.5s forwards ease;
+    }
+    
+    .logo.anim1 {
+        animation: anim_riba 2.5s forwards ease;
+    }
+    
+    .logo.anim2 {
+        animation: anim2_riba 2.5s forwards ease;
+    }
+    
+    .logo.anim3 {
+        animation: anim3_riba 2.5s forwards ease;
+    }
+    
+    #exi:hover {
+        color: rgb(141, 0, 0);
+        transform: scale(1.7);
+        animation: shak 0.2s infinite ease;
+    }
+    
+    .logo.shakes {
+        animation: shaks 0.25s infinite ease;
+    }
+    
+    .trash1 {
+        background-image: url('../imgs/trash.png');
+    }
+    
+    .trash2 {
+        background-image: url('../imgs/trash_2.png');
+    }
+    
+    #right_menu {
+        position: relative;
+        height: 50%;
+        top: 50%;
+        left: -70px;
+        transform: translate(0%, -50%);
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .menu_el_r {
+        border-radius: 10px 0px 0px 10px;
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+        background-color: rgba(255, 255, 255, .15);
+        backdrop-filter: blur(5px);
+        width: 70px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+    
+    .menu_el_r:hover {
+        background-color: rgba(255, 255, 255, .0);
+    }
+    
+    .hiver {
+        background-color: rgba(255, 255, 255, .0);
+    }
+    
+    .menu_el_r img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    #menu_row {
+        display: flex;
+        gap: 10px;
+    }
+    
+    #openone.hover {
+        border: 3px solid rgb(103, 51, 42);
+    }
+    
+    #opentwo.hover {
+        border: 3px solid rgb(103, 51, 42);
+    }
+    
+    #menu_row button {
+        font-size: 19px;
+        font-family: "GNF";
+        color: black;
+        background-color: rgb(244, 189, 135);
+        border: 3px solid rgb(186, 97, 82);
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+    }
+    
+    #menu_row button:hover {
+        opacity: 0.6;
+    }
+    
+    #menu_row_card {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 150px);
+        gap: 20px;
+        justify-content: center;
+        width: 85%;
+        padding-bottom: 40px;
+        transition: all 0.3s ease;
+        transform: translateX(0%);
+    }
+    
+    #menu_row_card.off {
+        transform: translateX(150%);
+    }
+    
+    #menu_row_card.OFF {
+        display: none;
+    }
+    
+    #menu_row_gifts {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 150px);
+        gap: 20px;
+        justify-content: center;
+        width: 85%;
+        padding-bottom: 40px;
+        transition: all 0.3s ease;
+        transform: translateX(150%);
+    }
+    
+    #menu_row_gifts.on {
+        transform: translateX(0%);
+    }
+    
+    .MenuRowImg {
+        width: 25px;
+        opacity: 0.8;
+        scale: 1.2;
+    }
+    
+    #Menu {
+        right: 0px;
+        top: 0px;
+        z-index: 1000000000;
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        transition: all 0.3s ease;
+        background-color: rgb(243, 166, 94);
+        backdrop-filter: blur(5px);
+        transform: translateX(100%);
+    }
+    
+    #Menu_cont {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        padding: 25px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-y: scroll;
+        align-content: flex-start;
+        padding-bottom: 40px;
+        overflow-x: hidden;
+    }
+    
+    .card {
+        width: 150px;
+        height: 200px;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    }
+    
+    .card:hover img {
+        animation: shak 0.4s ease 3;
+    }
+    
+    .cardHead {
+        width: 100%;
+        height: 70%;
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+        border: 5px solid rgb(186, 97, 82);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        background-color: white;
+    }
+    
+    .cardHead img {
+        width: 170px;
+        position: absolute;
+        left: -20px;
+        top: -5px;
+    }
+    
+    .card button {
+        font-size: 19px;
+        width: 100%;
+        font-family: "GNF";
+        color: black;
+        background-color: rgb(244, 189, 135);
+        border: 3px solid rgb(186, 97, 82);
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+    }
+    
+    #canvas {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .card button:hover {
+        opacity: 0.6;
+    }
+    
+    #ExpMenu {
+        transition: all 0.3s ease;
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        left: 0px;
+        top: 50%;
+        transform: translate(-100%, -50%);
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+        background-color: rgba(255, 255, 255, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(5px);
+    }
+    
+    #ExpMenu img {
+        width: 80%;
+        transform: scaleX(-1)
+    }
+    
+    #ExpMenuShark {
+        position: absolute;
+    }
+    
+    #alr {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
+    }
+    
+    #alr h1 {
+        color: #87b1ce;
+    }
+    
+    @keyframes shak {
+        0% {
+            transform: rotate(0deg);
+        }
+        25% {
+            transform: rotate(5deg);
+        }
+        50% {
+            transform: rotate(0deg);
+        }
+        75% {
+            transform: rotate(-5deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+    
+    @keyframes shakаа {
+        0% {
+            transform: rotate(45deg);
+        }
+        25% {
+            transform: rotate(50deg);
+        }
+        50% {
+            transform: rotate(45deg);
+        }
+        75% {
+            transform: rotate(40deg);
+        }
+        100% {
+            transform: rotate(45deg);
+        }
+    }
+    
+    @keyframes shaks {
+        0% {
+            transform: rotate(15deg) scaleX(-1);
+        }
+        25% {
+            transform: rotate(20deg) scaleX(-1);
+        }
+        50% {
+            transform: rotate(15deg) scaleX(-1);
+        }
+        75% {
+            transform: rotate(10deg) scaleX(-1);
+        }
+        100% {
+            transform: rotate(15deg) scaleX(-1);
+        }
+    }
+    
+    @keyframes anim_riba {
+        0% {
+            left: 10px;
+            transform: scaleX(-1) rotate(0deg);
+        }
+        10% {
+            left: 15px;
+            transform: scaleX(-1) rotate(0deg);
+        }
+        20% {
+            left: 25px;
+            transform: scaleX(-1) rotate(0deg);
+        }
+        30% {
+            left: 35px;
+            transform: scaleX(-1) rotate(0deg);
+        }
+        40% {
+            left: 40px;
+            transform: scaleX(1) rotate(0deg);
+        }
+        50% {
+            left: 35px;
+            transform: scaleX(1) rotate(0deg);
+        }
+        60% {
+            left: 20px;
+            transform: scaleX(1) rotate(0deg);
+        }
+        70% {
+            left: 15px;
+            transform: scaleX(1) rotate(0deg);
+        }
+        80% {
+            left: 10px;
+            transform: scaleX(1) rotate(0deg);
+        }
+        90% {
+            left: 0px;
+            transform: scaleX(-1) rotate(15deg);
+        }
+    }
+    
+    @keyframes anim2_riba {
+        0% {
+            top: 0px;
+            left: 10px;
+            transform: scaleX(-1) rotate(10deg);
+        }
+        10% {
+            top: 0px;
+            left: 15px;
+            transform: scaleX(-1) rotate(0deg);
+        }
+        20% {
+            top: 0px;
+            left: 30px;
+            transform: scaleX(-1) rotate(15deg);
+        }
+        30% {
+            top: 0px;
+            left: 45px;
+            transform: scaleX(-1) rotate(5deg);
+        }
+        40% {
+            top: 0px;
+            left: 60px;
+            transform: scaleX(-1) rotate(10deg);
+        }
+        50% {
+            top: 0px;
+            left: 75px;
+            transform: scaleX(-1) rotate(0deg);
+        }
+        60% {
+            top: 0px;
+            left: 90px;
+            transform: scaleX(-1) rotate(-5deg);
+        }
+        70% {
+            top: 0px;
+            left: 105px;
+            transform: scaleX(-1) rotate(0deg);
+        }
+        80% {
+            top: 0px;
+            left: 120px;
+            transform: scaleX(1) rotate(5deg);
+        }
+        85% {
+            top: 0px;
+            left: 75px;
+            transform: scaleX(1) rotate(-5deg);
+        }
+        90% {
+            top: 0px;
+            left: 50px;
+            transform: scaleX(1) rotate(3deg);
+        }
+        95% {
+            top: 0px;
+            left: 20px;
+            transform: scaleX(1) rotate(-3deg);
+        }
+        99% {
+            top: 0px;
+            left: 10px;
+            transform: scaleX(1) rotate(0deg);
+        }
+        99% {
+            top: 0px;
+            left: 10px;
+            transform: scaleX(-1) rotate(15deg);
+        }
+    }
+    
+    @keyframes anim3_riba {
+        0% {
+            left: 10px;
+            top: 0px;
+            transform: scaleX(-1) rotate(45deg);
+        }
+        10% {
+            left: 10px;
+            top: 0px;
+            transform: scaleX(1) rotate(45deg);
+        }
+        100% {
+            left: -500px;
+            top: -500px;
+            transform: scaleX(1) rotate(45deg);
+        }
+    }
+    
+    @keyframes anim4_riba {
+        0% {
+            transform: scaleX(-1) rotate(0deg);
+        }
+        100% {
+            transform: scaleX(-1) rotate(360deg);
+        }
+    }
+    
+    @media screen and (max-width: 1000px) and (orientation: landscape) {
+        #score {
+            font-size: 25px;
+        }
+        #right_menu {
+            top: 25%;
+        }
+        #ExpMenu {
+            width: 40%;
+        }
+        #Menu {
+            width: 60%;
+        }
+        #Hud.visible {
+            transform: translate(-50%, 0) scale(0.8);
+        }
+        #Hud {
+            bottom: 0px;
+            transform: translate(-50%, 150%) scale(0.8);
+        }
+    }
+    
+    @media (orientation: portrait) {
+        #game, #Header {
+            display: none;
+        }
+        #alr {
+            display: flex;
+        }
+    }

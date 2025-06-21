@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>RIBA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+
+
+
+</head>
+
+<body>
+    <div id="alr">
+        <h1>Переверніть, будь ласка, телефон</h1>
+    </div>
+    <div id="game">
+        <canvas id="canvas"></canvas>
+    </div>
+
+
+    <div id="Header">
+
+
+        <!--МЕНЮ-->
+        <section id="ExpMenu">
+            <img id="ExpMenuShark" src="../imgs/akula_new.png" />
+        </section>
+
+        <section id="Menu">
+            <h1 id="ScrolSmall">🌊 EсoPoints: 0 </h1>
+
+            <div id="right_menu">
+                <div class="menu_el_r" id="shop" onclick="OpenMenuSkins('shop')">
+                    <img src="../imgs/icons/icons_right/shop.png" />
+                </div>
+            </div>
+
+            <div id="Menu_cont">
+
+                <div id="menu_row">
+                    <button id="openone" onclick="openAcs()"><img src="../imgs/icons/garderob.png" class="MenuRowImg" />Аксесуари</button>
+                    <!-- <button><img src="../imgs/icons/veshalka.png" class="MenuRowImg" />Скіни</button> -->
+                    <button id="opentwo" onclick="openGifts()" ><img src="../imgs/icons/Gift.png" class="MenuRowImg" />Реальні подарунки</button>
+                </div>
+
+                <div id="menu_row_card"></div>
+                <div id="menu_row_gifts"></div>
+        </section>
+
+
+
+        <!--БАЛИ-->
+        <h1 id="score">🌊 EсoPoints: 0 </h1>
+
+        <!--ДЖОСТИК-->
+        <canvas id="joystick" width="150" height="150" style="position:fixed; right:5%; bottom:10%;"></canvas>
+
+        <!--СОЦІАЛЬНІ ВЗАЄМОДІЇ-->
+        <div id="Hud">
+            <p id="Hud_nick">Nick name</p>
+            <section>
+                <div class="Hud_el">
+                    <img src="../imgs/icons/icons_do/ruka.png" />
+                    <b>Помахати</b>
+                </div>
+                <div class="Hud_el" onclick="sendBulkTo()">
+                    <p class="Hud_el_text"><img src="../imgs/icons/icons_do/bulk.png" /></p>
+                    <b>Булькати</b>
+                </div>
+                <div class="Hud_el" onclick="sendToplay()">
+                    <p class="Hud_el_text"><img src="../imgs/icons/icons_do/gift.png" /></p>
+                    <b>Подарунок</b>
+                </div>
+        </div>
+        </section>
+    </div>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script type="module" src="../js/main.js"></script>
+
+    <script type="module" src="../js/joystick.js"></script>
+    <script type="module" src="../js/help.js"></script>
+    <script type="module" src="../js/config/config.js"></script>
+    <script type="module" src="../js/MenuR/MenuSkins.js"></script>
+    
+
+    <script type="module" src="../js/MenuR/Cards/create_card.js"></script>
+</body>
+
+</html>

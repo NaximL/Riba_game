@@ -1,0 +1,15 @@
+{
+  "name": "Sharke",
+  "short_name": "Shark",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+    "icons": [
+    {
+      "src": "/imgs/akula_new.png",
+      "sizes": "1280x100",
+      "type": "image/png"
+    }
+  ]
+}

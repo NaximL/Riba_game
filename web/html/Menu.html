@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <style>
+        body {
+            background-color: #4e6879;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <div id="logo_conteiner"><img class="logo" src="../imgs/akula_new.png"></div>
+        <div class="menu_butts">
+            <div class="menu_butt">
+                <h1 onclick="start_game_pre_relise()">Почaтu гру</h1>
+                <h1 id="exi">Вuйтu</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function random(min, max) {
+            let rand = min + Math.random() * (max + 1 - min);
+            return Math.floor(rand)
+        }
+
+        const start_game_pre_relise = () => {
+            const logo = document.getElementsByClassName("logo")[0]
+            const bitt = document.getElementsByClassName("menu_butts")[0]
+
+
+
+            if (!localStorage.nick) {
+                const nick = prompt("Будь ласка, введіть ваш нік").trim();
+
+                if (!nick) {
+                    alert("Ваш нік пустий, введіть ще раз");
+                    window.location.reload();
+                    return;
+                }
+
+                localStorage.nick = nick;
+
+
+                logo.classList.add("anim3");
+                bitt.style.transform = "translate(200%,0px)";
+                document.body.style.backgroundColor = "rgba(128, 128, 128, 0.5)";
+
+
+                setTimeout(() => {
+                    logo.remove();
+                    bitt.remove();
+                    document.getElementsByClassName("menu")[0].style.display = 'none';
+                    window.location.href = "game";
+                }, 2000);
+            } else {
+                logo.classList.add("anim3");
+                bitt.style.transform = "translate(200%,0px)";
+                document.body.style.backgroundColor = "rgba(128, 128, 128, 0.5)";
+
+
+                setTimeout(() => {
+                    logo.remove();
+                    bitt.remove();
+                    document.getElementsByClassName("menu")[0].style.display = 'none';
+                    window.location.href = "game";
+                }, 2000);
+            }
+
+
+        }
+        const element = document.querySelector('.menu_butt h1');
+
+        element.addEventListener('mouseenter', () => {
+
+            document.getElementsByClassName("logo")[0].classList.add(`anim${random(1, 2)}`);
+        })
+
+        element.addEventListener('mouseleave', () => {
+            document.getElementsByClassName("logo")[0].classList.remove("anim1");
+            document.getElementsByClassName("logo")[0].classList.remove("anim2");
+        });
+
+
+        document.querySelector('#exi').addEventListener('mouseenter', () => {
+            document.getElementsByClassName("logo")[0].src = "../imgs/akula_plachet.png"
+            document.getElementsByClassName("logo")[0].classList.add("shakes")
+        });
+
+        document.querySelector('#exi').addEventListener('mouseleave', () => {
+            document.getElementsByClassName("logo")[0].src = "../imgs/akula_new.png"
+            document.getElementsByClassName("logo")[0].classList.remove("shakes")
+
+        });
+
+    </script>
+</body>
+
+</html>
