@@ -25,7 +25,7 @@ let PLAYERS = [];
 let TRASH = [];
 
 app.use(express.static(path.join(__dirname, 'web'))); // 🟢 Хостим все з /web
-
+app.use('/imgs', express.static(path.join(__dirname, 'web/imgs')));
 // 📄 HTML маршрути
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'web/html/menu.html')));
 app.get('/menu', (req, res) => res.sendFile(path.join(__dirname, 'web/html/menu.html')));
