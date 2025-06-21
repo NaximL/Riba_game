@@ -24,9 +24,9 @@ const TRASH_NUM = 350;
 let PLAYERS = [];
 let TRASH = [];
 
-app.use(express.static(path.join(__dirname, 'web'))); // 🟢 Хостим все з /web
+app.use(express.static(path.join(__dirname, 'web'))); 
 app.use('/imgs', express.static(path.join(__dirname, 'web/imgs')));
-// 📄 HTML маршрути
+
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'web/html/menu.html')));
 app.get('/menu', (req, res) => res.sendFile(path.join(__dirname, 'web/html/menu.html')));
 app.get('/game', (req, res) => res.sendFile(path.join(__dirname, 'web/html/index.html')));
@@ -102,7 +102,7 @@ io.on('connection', (socket) => {
     if (p) p.skin = skin;
   });
   socket.on("deleteTrash", (index) => {
-    if (index >= 0 && index < TRASH.length) TRASH.splice(index, 1);
+    TRASH.splice(index, 1);
   });
 
   socket.on('move', (dir) => {

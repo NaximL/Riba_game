@@ -471,6 +471,14 @@
         color: #87b1ce;
     }
     
+    .gift {
+        width: 180px;
+        position: absolute;
+        left: -20px;
+        transform: rotate(25deg);
+        top: 3px;
+    }
+    
     @keyframes shak {
         0% {
             transform: rotate(0deg);

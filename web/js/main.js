@@ -1,7 +1,10 @@
 import { mapHeights, mapWidths, skins } from "./config/config.js";
 import { res, dpr, col, getId, isDesktop } from "./help.js";
 
-export const socket = io('https://eplorecorals-6971e5ec7c85.herokuapp.com');
+const server = "https://eplorecorals-6971e5ec7c85.herokuapp.com"
+const local = "http://192.168.110.48:3001"
+
+export const socket = io(server);
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -12,6 +15,9 @@ window.addEventListener('resize', () => res(canvas, ctx));
 
 let mapWidth = mapWidths;
 let mapHeight = mapHeights;
+
+
+const trashCache = {};
 
 let trashId = null;
 let cameraX = 0;
@@ -113,7 +119,7 @@ socket.on('create_players', (playersJSON) => {
     for (let j = i + 1; j < PLAYER.length; j++) {
       if (col(PLAYER[i], PLAYER[j], 200)) {
         if (PLAYER[i].id === ID || PLAYER[j].id === ID) {
-          document.getElementById("Hud_nick").innerText = PLAYER[i].nick;
+          document.getElementById("Hud_nick").innerText =PLAYER[i].nick !== localStorage.nick ? PLAYER[i].nick : PLAYER[j].nick;
           HUD.classList.add("visible");
           hudShown = true;
           break outer;
@@ -130,7 +136,6 @@ socket.on('create_players', (playersJSON) => {
   ctx.restore();
 });
 
-const trashCache = {};
 
 function drawTrash(logicalWidth, logicalHeight) {
   const now = performance.now();

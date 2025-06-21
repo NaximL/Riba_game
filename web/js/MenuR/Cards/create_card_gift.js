@@ -3,7 +3,7 @@ const small = document.getElementById("ScrolSmall")
 
 const cards = [
     {
-        img: "../imgs/akula_new.png",
+        img: "../imgs/RealItems/brelok.png",
         buttonText: "Buy",
         match: 500,
         text: "Падаруначек"
@@ -25,8 +25,8 @@ export const render_gifts = () => {
 
         return `
             <div class="card">
-                    <div class="cardHead">
-                        <img src="${item.img}" alt="ico" />
+                    <div class="cardHead gift">
+                        <img src="${item.img}"  alt="ico" />
                     </div>
        
                     <button onclick='re("${item.img}")'>${butt}</button>
