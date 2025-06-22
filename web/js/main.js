@@ -3,7 +3,7 @@ import { res, dpr, col, getId, isDesktop } from "./help.js";
 
 
 
-export const socket = io(local);
+export const socket = io(server);
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
