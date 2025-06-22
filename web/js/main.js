@@ -1,4 +1,4 @@
-import { local, mapHeights, mapWidths, skins } from "./config/config.js";
+import { local, mapHeights, mapWidths, skins,server} from "./config/config.js";
 import { res, dpr, col, getId, isDesktop } from "./help.js";
 
 
