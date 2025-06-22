@@ -1,3 +1,5 @@
+import { ID, socket } from "../../main.js";
+
 const small = document.getElementById("ScrolSmall")
 
 
@@ -6,16 +8,20 @@ const cards = [
         img: "../imgs/RealItems/brelok.png",
         buttonText: "Buy",
         match: 500,
-        text: "Падаруначек"
+        text: "Брелок"
     }
 ];
 
-window.re = (item) => {
-    console.log(item)
-    document.location.href = '/qr';
-    let o = JSON.parse(localStorage.gifts);
-    o.push(item);
-    localStorage.gifts = JSON.stringify(o);
+window.re = (img,des) => {
+    
+    socket.emit("NewQrCode", {
+        nick: localStorage.nick,
+        id:ID,
+        des:des
+    })
+    document.getElementById("qr").style.display = 'flex'
+    document.getElementById("maingmae").style.display = 'none'
+    qrd()
 }
 
 export const render_gifts = () => {
@@ -29,7 +35,7 @@ export const render_gifts = () => {
                         <img src="${item.img}"  alt="ico" />
                     </div>
        
-                    <button onclick='re("${item.img}")'>${butt}</button>
+                    <button onclick='re("${item.img}","${item.text}")'>${butt}</button>
             </div>
 
         `;

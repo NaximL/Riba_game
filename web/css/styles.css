@@ -6,6 +6,33 @@
         transition: background-color 0.3s ease;
         overflow: hidden !important;
     }
+
+    #qr {
+        width: 100%;
+        height: 100%;
+        display: none;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #qr img {
+        width: 80%;
+    }
+
+    #qrcode {
+        width: 80%;
+    }
+
+    #qrcode canvas {
+        height: unset !important;
+        width: 100% !important;
+    }
+
+    #qr h1 {
+        padding-inline: 20px;
+        font-weight: lighter;
+    }
     
     #ScrolSmall {
         position: fixed;
@@ -14,6 +41,13 @@
         color: black;
         top: -10px;
         font-family: 'GNF', sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    #ScrolSmall img {
+
+        width: 30px;
     }
     
     #score {
@@ -29,7 +63,7 @@
     }
     
     #score img {
-        width: 30px;
+        width: 40px;
     }
     
     #mahas {
@@ -471,7 +505,7 @@
         color: #87b1ce;
     }
     
-    .gift {
+    .gift img{
         width: 180px;
         position: absolute;
         left: -20px;

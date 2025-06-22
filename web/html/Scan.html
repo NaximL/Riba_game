@@ -64,12 +64,28 @@
 
   <p id="result"></p>
 
-  <script>
+  <script type="module">
+    import { local } from '../js/config/config.js';
     const resultElement = document.getElementById('result');
     const qrScanner = new Html5Qrcode("reader");
 
     function onScanSuccess(decodedText, decodedResult) {
-      resultElement.textContent = `✅ Зчитано: ${decodedText}`;
+      let o = JSON.parse(decodedText);
+      fetch(`${local}/scanf`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(o)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Server response:', data);
+      })
+      .catch(error => {
+        console.error('Error sending data:', error);
+      });
+      resultElement.textContent = `✅ Зчитано: ${decodedText.des}`;
 
     }
 

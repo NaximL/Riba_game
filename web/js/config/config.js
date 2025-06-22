@@ -51,3 +51,7 @@ export const scale = [0.5, 1, 1.5];
 
 export let mapWidths = 1500;
 export let mapHeights = 1500;
+
+
+export const server = "https://eplorecorals-6971e5ec7c85.herokuapp.com"
+export const local = "http://192.168.1.210:3001"

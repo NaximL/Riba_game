@@ -18,9 +18,12 @@ const io = new Server(httpServer, {
   }
 });
 
+
+
 const resolusionX = mapWidths;
 const resolusionY = mapHeights;
 const TRASH_NUM = 350;
+let QRCODE =[];
 let PLAYERS = [];
 let TRASH = [];
 
@@ -41,6 +44,19 @@ function s(length = 7) {
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+app.post('/scanf', express.json(), (req, res) => {
+  const obj = req.body;
+  const index = QRCODE.findIndex(qr =>
+    Object.keys(obj).every(key => qr[key] === obj[key])
+  );
+  if (index !== -1) {
+    QRCODE.splice(index, 1);
+    res.json({ success: true, message: 'QR code removed' });
+  } else {
+    res.status(404).json({ success: false, message: 'QR code not found' });
+  }
+});
 
 function getRandomTrash() {
   const totalChance = trash.reduce((sum, t) => sum + t.chance, 0);
@@ -89,9 +105,16 @@ io.on('connection', (socket) => {
     vy: 0
   });
 
+
+
   io.emit('gettrash', JSON.stringify(TRASH));
   io.emit('create_players', JSON.stringify(PLAYERS));
 
+  socket.on("NewQrCode",item=>{
+    console.log(item)
+    QRCODE.push(item)
+  })
+  socket.on("Qrcodepush",()=>io.emit("Qrcodepushs",QRCODE))
   socket.on("waf", () => update());
   socket.on("nick", (nick) => {
     let p = PLAYERS.find(o => o.id === socket.id);
@@ -130,12 +153,16 @@ setInterval(() => {
   PLAYERS.forEach(p => {
     p.x += p.vx;
     p.y += p.vy;
+
+    // 🔒 Обмеження в межах карти
+    p.x = Math.max(0, Math.min(p.x, resolusionX));
+    p.y = Math.max(0, Math.min(p.y, resolusionY));
+
     p.vx *= 0.91;
     p.vy *= 0.91;
   });
   io.emit('create_players', JSON.stringify(PLAYERS));
 }, 30);
-
 // ✅ Порт Heroku або локальний
 const PORT = process.env.PORT || 3001;
 httpServer.listen(PORT, () => {

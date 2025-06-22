@@ -47,7 +47,7 @@ const cards = [
 
 
 export const render = () => {
-    small.innerText = `🌊 EcoPoints: ${localStorage.score}`;
+    small.innerHTML = `<img src="../imgs/icons/volna.png"/> EсoPoints: ${localStorage.score}`;
 
     const htmlMarkup = cards.map((item) => {
         let butt = (JSON.parse(localStorage.skins).includes(item.img) && "Equip") || `${item.match} 🌊`

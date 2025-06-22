@@ -18,7 +18,7 @@ window.OpenMenuSkins = () => {
         document.getElementById("ExpMenu").style.transform = "translate(0%,-50%)"
         menu.style.transform = "translateX(0%)"
         MenuOpen = !MenuOpen
-        small.innerText = `🌊 EcoPoints: ${localStorage.score}`;
+        small.innerHTML = `<img src="../imgs/icons/volna.png"/> EсoPoints: ${localStorage.score}`;
     }
 }
 

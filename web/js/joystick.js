@@ -90,7 +90,14 @@ window.addEventListener("mouseup", () => {
     knob.active = false;
     updateJoystickDirection(resetJoystick());
 });
-
+window.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    const x = touch.clientX;
+    const y = touch.clientY;
+    
+    document.getElementById("joystick").style.left =`${x-75}px`;
+    document.getElementById("joystick").style.top = `${y-75}px`;
+});
 
 ["touchstart", "touchmove"].forEach(eventName => {
     joystick.addEventListener(eventName, e => {
@@ -99,6 +106,7 @@ window.addEventListener("mouseup", () => {
         knob.active = true;
         const rect = joystick.getBoundingClientRect();
         const touch = e.touches[0];
+
         handleInput(touch.clientX - rect.left, touch.clientY - rect.top);
     });
 });

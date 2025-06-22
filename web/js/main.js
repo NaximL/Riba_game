@@ -1,10 +1,9 @@
-import { mapHeights, mapWidths, skins } from "./config/config.js";
+import { local, mapHeights, mapWidths, skins } from "./config/config.js";
 import { res, dpr, col, getId, isDesktop } from "./help.js";
 
-const server = "https://eplorecorals-6971e5ec7c85.herokuapp.com"
-const local = "http://192.168.110.48:3001"
 
-export const socket = io(server);
+
+export const socket = io(local);
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -22,7 +21,7 @@ const trashCache = {};
 let trashId = null;
 let cameraX = 0;
 let cameraY = 0;
-let ID = null;
+export let ID = null;
 
 const playerSkinImage = new Image();
 const heartImage = new Image();
@@ -38,6 +37,7 @@ let giftAnimations = [];
 if (navigator.connection && navigator.connection.saveData) {
   alert("На вашому пристрої ввімкнено режим економії даних. Це впливає на праціздатність гри");
 }
+
 socket.on('connect', () => {
   socket.emit("nick", localStorage.nick);
   socket.emit('move', 'right')
@@ -91,8 +91,11 @@ socket.on('create_players', (playersJSON) => {
       player.y > cameraY + logicalHeight + 300
     ) return;
 
+
+
     const flip = player.vx > 0;
     ctx.save();
+     
     ctx.translate(player.x - cameraX, player.y - cameraY);
     ctx.rotate(Math.atan2(player.vy, player.vx) + Math.PI);
     if (flip) ctx.scale(1, -1);
@@ -100,10 +103,12 @@ socket.on('create_players', (playersJSON) => {
     ctx.drawImage(playerSkinImage, -120, -80, 213, 160);
     ctx.restore();
 
+
+
     for (let i = TRASH.length - 1; i >= 0; i--) {
       if (col(player, TRASH[i], 70)) {
         localStorage.score = Number(localStorage.score) + TRASH[i].score;
-        document.getElementById("score").innerText = `🌊 EсoPoints: ${localStorage.score}`;
+        document.getElementById("score").innerHTML = `<img src="../imgs/icons/volna.png"/> EсoPoints: ${localStorage.score}`;
         socket.emit("deleteTrash", i);
         TRASH.splice(i, 1);
       }
@@ -119,7 +124,7 @@ socket.on('create_players', (playersJSON) => {
     for (let j = i + 1; j < PLAYER.length; j++) {
       if (col(PLAYER[i], PLAYER[j], 200)) {
         if (PLAYER[i].id === ID || PLAYER[j].id === ID) {
-          document.getElementById("Hud_nick").innerText =PLAYER[i].nick !== localStorage.nick ? PLAYER[i].nick : PLAYER[j].nick;
+          document.getElementById("Hud_nick").innerText = PLAYER[i].nick !== localStorage.nick ? PLAYER[i].nick : PLAYER[j].nick;
           HUD.classList.add("visible");
           hudShown = true;
           break outer;
@@ -192,6 +197,13 @@ document.addEventListener('keyup', e => keys[e.key.toLowerCase()] = false);
 
 setInterval(() => {
   if (!localStorage.InStore) {
+    const me = PLAYER.find(p => p.id === ID);
+    if (!me) return;
+
+
+    me.x = Math.max(0, Math.min(me.x, mapWidth));
+    me.y = Math.max(0, Math.min(me.y, mapHeight));
+
     if (keys['w']) socket.emit('move', 'up');
     if (keys['a']) socket.emit('move', 'left');
     if (keys['s']) socket.emit('move', 'down');
